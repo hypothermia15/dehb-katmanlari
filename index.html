@@ -51,30 +51,46 @@
 
 <main class="oyun" id="g-oyun" hidden>
   <section class="oyun-ust">
-    <h2>1000 çocuktan kaçı?</h2>
-    <p>Genel toplumda 1000 çocuktan yaklaşık <strong>53</strong>’ünde DEHB vardır. Bir etken eklendiğinde bu sayı kaça çıkar? Tahmin edin, sonra yayımlanmış oranla karşılaştırın.</p>
-    <p class="uyari"><strong>Bu bir kişi için risk hesabı değildir.</strong> Sayılar grup ortalamalarıdır. Oranlar farklı ülkelerden ve farklı tanı tanımlarından gelir, 1000 çocuğa çevirme işlemi bu sayfanın hesabıdır. Etkenler birbirinden bağımsız olmadığı için üst üste çarpılamaz, bu yüzden her seferinde tek etken gösterilir.</p>
+    <h2>Etken ekledikçe ne değişir?</h2>
+    <p>Ortadaki çocuk kurgusaldır. Yandaki düğmelerle etken ekleyin ve yayımlanmış oranların olasılığı nasıl değiştirdiğini izleyin.</p>
+    <p class="uyari"><strong>Bu bir risk hesaplayıcı değildir.</strong> Etkenler birleştirilirken birbirinden bağımsız oldukları ve her birinin gerçek bir neden olduğu varsayılır. İkisi de doğru değildir: etkenler birlikte kümelenir ve çoğu için nedensellik gösterilmemiştir. Sonuç bir aritmetik gösterimidir, gerçek bir çocuğun olasılığı değildir.</p>
   </section>
   <section class="oyun-alan">
     <div class="oyun-sol">
-      <p class="tur" id="o-tur"></p>
-      <h3 id="o-soru"></h3>
-      <div id="o-tahmin">
-        <label for="o-kaydirici">Tahmininiz: <output id="o-deger">53</output> / 1000</label>
-        <input type="range" id="o-kaydirici" min="0" max="1000" step="1" value="53">
-        <button type="button" class="ana" id="o-kilitle">Tahminimi kilitle</button>
+      <div class="cocuk-kap">
+        <svg id="o-cocuk" viewBox="0 0 240 240" role="img" aria-labelledby="o-yuzde-etiket">
+          <circle class="halka-zemin" cx="120" cy="120" r="104"/>
+          <circle class="halka" id="o-halka" cx="120" cy="120" r="104" transform="rotate(-90 120 120)"/>
+          <g class="cocuk">
+            <path class="sac" d="M92 78c0-20 12-32 28-32s28 12 28 32c-6-9-14-13-28-13s-22 4-28 13z"/>
+            <circle class="bas" cx="120" cy="84" r="26"/>
+            <circle class="goz" cx="111" cy="84" r="2.4"/><circle class="goz" cx="129" cy="84" r="2.4"/>
+            <path class="agiz" d="M112 94c4 4 12 4 16 0"/>
+            <path class="govde" d="M96 122c0-8 8-12 24-12s24 4 24 12l4 44h-56z"/>
+            <path class="kol" d="M97 126l-14 30M143 126l14 30"/>
+            <path class="bacak" d="M108 166v28M132 166v28"/>
+          </g>
+        </svg>
+        <p class="yuzde" id="o-yuzde-etiket"><strong id="o-yuzde">%5,3</strong><span id="o-yuzde-alt">genel toplum</span></p>
       </div>
-      <div id="o-sonuc" hidden></div>
-      <div id="o-gezinti" hidden>
-        <label for="o-sec">Etken seçin</label>
-        <select id="o-sec"></select>
-      </div>
+      <div class="yuz" id="o-yuz" role="img" aria-label="100 çocuk"></div>
+      <p class="ozet" id="o-ozet" aria-live="polite"></p>
+      <p class="hesap" id="o-hesap"></p>
+      <button type="button" class="ana ikinci-ana" id="o-sifirla">Sıfırla</button>
     </div>
     <div class="oyun-sag">
-      <canvas id="o-izgara" width="600" height="250" role="img" aria-label="1000 çocuğu gösteren nokta ızgarası"></canvas>
-      <p class="lejant"><span class="n taban"></span> genel toplumdaki 53 <span class="n ek"></span> etkenle eklenen <span class="n tahmin"></span> tahmininiz</p>
-      <p class="ozet" id="o-ozet" aria-live="polite"></p>
+      <div id="o-dugmeler"></div>
+      <div class="gez-bilgi" id="o-bilgi"><p class="bos">Bir etken seçince kaynağı ve sınırı burada görünür.</p></div>
     </div>
+  </section>
+  <section class="oyun-ders">
+    <h3>Akılda kalması gerekenler</h3>
+    <ul class="dersler">
+      <li>Tek bir etken sayıyı az oynatır: çoğunda 100 çocuğun 90’dan fazlasında DEHB yoktur.</li>
+      <li>İlişki, neden demek değildir. Gebelikte sigara örneğinde ilişki, aynı ailenin çocukları karşılaştırılınca kaybolur.</li>
+      <li>Listedeki en güçlü etken ailedir. Yine de kardeşi DEHB’li çocukların çoğunda DEHB yoktur.</li>
+      <li>Tek bir çocuğun DEHB’li olup olmadığını ancak klinik değerlendirme söyler.</li>
+    </ul>
   </section>
 </main>
 

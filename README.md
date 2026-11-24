@@ -17,9 +17,13 @@ Yazar: Doç. Dr. Miraç Barış Usta (çocuk ve ergen psikiyatrisi), 2026.
 
 Dosyalar: `index.html`, `styles.css`, `icerik.js` (metin, etkenler ve kaynaklar), `script.js` (şema), `oyun.js` (olasılık oyunu). Derleme adımı, dış kaynak ya da çerez yoktur.
 
-## Olasılık oyunu: "1000 çocuktan kaçı?"
+## Olasılık oyunu: "Etken ekledikçe ne değişir?"
 
-Sekiz soruluk bir tahmin oyunu ve ardından serbest gezinti. Her soruda bir etken verilir, oyuncu 1000 çocuktan kaçında DEHB bekleneceğini tahmin eder, sonra yayımlanmış oranla karşılaştırır.
+Ortada kurgusal bir çocuk, yanında etken düğmeleri. Düğmeye basıldıkça çocuğun çevresindeki halka, yüzde ve 100 noktalık ızgara güncellenir. Aile öyküsü ve doğum gruplarında aynı anda tek seçenek seçilebilir. Gebelikte sigara etkeninde "aile etkenlerini hesaba kat" düğmesi oranı 1,0'a çeker.
+
+Birleştirme kuralı (yazarın hesabı): her etkenin tek başına verdiği olasılık, tabana göre bir olasılık oranına çevrilir; seçilen etkenlerin oranları çarpılır. Bu, etkenlerin birbirinden bağımsız ve nedensel olduğunu varsayar. İkisi de doğru değildir ve bu sayfada, oyunun üstündeki uyarıda açıkça yazılıdır. Üç ve daha çok etken seçildiğinde hesabın bir çalışmaya dayanmadığı ayrıca belirtilir. Örnek: kardeş + aşırı erken doğum birlikte %70 verir; bu sayı hiçbir çalışmada ölçülmemiştir.
+
+Tek etkenli değerler (1000 çocukta):
 
 | Etken | Oran | 1000'de | Kaynak |
 |---|---|---|---|
@@ -41,7 +45,7 @@ Bilinen sınırlar:
 
 - Oranlar farklı ülkelerden, farklı tanı tanımlarından ve farklı taban oranlardan gelir. Hepsini tek bir %5,3 tabana uygulamak bir basitleştirmedir. Chen 2017'nin kütüğünde tanı oranı bu tabandan düşüktür, bu yüzden kardeş için 363 sayısı yalnızca büyüklük sırasını gösterir.
 - Tehlike oranını olasılığa çevirmek, oranın izlem boyunca sabit kaldığını varsayar.
-- Etkenler birbirinden bağımsız değildir. Sayfa bu yüzden etkenleri birleştirmez ve kişi için risk hesaplamaz.
+- Etkenler birbirinden bağımsız değildir. Birleştirilmiş sayılar bir aritmetik gösterimidir, ölçülmüş bir olasılık değildir. Sayfa kişi için risk hesaplamaz. (İlk sürümde etkenler birleştirilmiyordu; birleştirme kullanıcı isteğiyle eklendi.)
 - Tek yumurta ikizleri için tehlike oranı (70,45) oyuna alınmadı: bu dönüşümle anlamlı bir olasılık vermez.
 - Gebelikte parasetamol (Kim 2020'de RR 1,25) bilerek alınmadı: tartışmalı bir konu, kardeş karşılaştırmalı çalışmalar okunmadan sayfaya konmamalı.
 
