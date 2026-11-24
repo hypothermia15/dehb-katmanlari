@@ -14,6 +14,12 @@ const KAYNAK = {
   franz: { kisa: 'Franz ve ark., 2018', tam: 'Franz AP, Bolat GU, Bolat H, ve ark. Attention-Deficit/Hyperactivity Disorder and Very Preterm/Very Low Birth Weight: A Meta-analysis. Pediatrics. 2018;141(1).', doi: '10.1542/peds.2017-1645' },
   haan: { kisa: 'Haan ve ark., 2022', tam: 'Haan E, Westmoreland KE, Schellhas L, ve ark. Prenatal smoking, alcohol and caffeine exposure and offspring externalizing disorders: a systematic review and meta-analysis. Addiction. 2022;117(10):2602-2613.', doi: '10.1111/add.15858' },
   fri: { kisa: 'Frisira ve ark., 2025', tam: 'Frisira E, Holland J, Sayal K. Systematic review and meta-analysis: relative age in attention-deficit/hyperactivity disorder and autism spectrum disorder. Eur Child Adolesc Psychiatry. 2025;34(2):381-401.', doi: '10.1007/s00787-024-02459-x' },
+  ayano: { kisa: 'Ayano ve ark., 2023', tam: 'Ayano G, Demelash S, Gizachew Y, Tsegay L, Alati R. The global prevalence of attention deficit hyperactivity disorder in children and adolescents: An umbrella review of meta-analyses. J Affect Disord. 2023;339:860-866.', doi: '10.1016/j.jad.2023.07.071' },
+  zhang: { kisa: 'Zhang ve ark., 2019', tam: 'Zhang T, Sidorchuk A, Sevilla-Cermeño L, ve ark. Association of Cesarean Delivery With Risk of Neurodevelopmental and Psychiatric Disorders in the Offspring: A Systematic Review and Meta-analysis. JAMA Netw Open. 2019;2(8):e1910236.', doi: '10.1001/jamanetworkopen.2019.10236' },
+  yama: { kisa: 'Yamamoto ve ark., 2019', tam: 'Yamamoto JM, Benham JL, Dewey D, ve ark. Neurocognitive and behavioural outcomes in offspring exposed to maternal pre-existing diabetes: a systematic review and meta-analysis. Diabetologia. 2019;62(9):1561-1574.', doi: '10.1007/s00125-019-4923-0' },
+  chan: { kisa: 'Chan ve ark., 2026', tam: 'Chan JKN, Zhong AHF, Lam JYH, ve ark. Maternal and paternal antidepressant use before and during pregnancy and offspring risk of neurodevelopmental disorders: a systematic review and meta-analysis. Lancet Psychiatry. 2026;13(6):472-484.', doi: '10.1016/S2215-0366(26)00089-1' },
+  min: { kisa: 'Min ve ark., 2021', tam: 'Min X, Li C, Yan Y. Parental Age and the Risk of ADHD in Offspring: A Systematic Review and Meta-Analysis. Int J Environ Res Public Health. 2021;18(9).', doi: '10.3390/ijerph18094939' },
+  asar: { kisa: 'Asarnow ve ark., 2021', tam: 'Asarnow RF, Newman N, Weiss RE, Su E. Association of Attention-Deficit/Hyperactivity Disorder Diagnoses With Pediatric Traumatic Brain Injury: A Meta-analysis. JAMA Pediatr. 2021;175(10):1009-1016.', doi: '10.1001/jamapediatrics.2021.2033' },
   wil: { kisa: 'Willcutt ve ark., 2005', tam: 'Willcutt EG, Doyle AE, Nigg JT, Faraone SV, Pennington BF. Validity of the executive function theory of attention-deficit/hyperactivity disorder: a meta-analytic review. Biol Psychiatry. 2005;57(11):1336-1346.', doi: '10.1016/j.biopsych.2005.02.006' }
 };
 
@@ -145,6 +151,33 @@ const OGE = {
    Bu dönüşüm yazarın hesabıdır; kaynaklardaki çalışmalar farklı ülkelerden ve farklı tanı tanımlarından gelir. */
 const TABAN = 0.053;
 const ETKEN = [
+  { id: 'kiz', grup: 'cinsiyet', tek: 'cinsiyet', tur: 'RR', oran: 0.6667, cip: 'taban %3,5', ad: 'Kız',
+    bilgi: 'Meta-analizleri derleyen bir çalışmada çocuk ve ergenlerde yaygınlık erkeklerde %10, kızlarda %5 bulunmuştur: iki kat fark [ayano]. Bu sayfa aynı iki katlık oranı %5,3’lük tabana uygular: kızlarda yaklaşık %3,5, erkeklerde yaklaşık %7,1 (sayfanın hesabı).',
+    ders: 'Fark yalnızca biyoloji olmayabilir. Kızlar genel olarak daha az yıkıcı davranır, belirtilerini telafi etmeye ya da gizlemeye eğilimlidir ve tanıyı çoğu kez daha geç alır. Erişkinlikte erkek ve kadın oranları yaklaşık eşittir (Buitelaar ve Newcorn, 2026).' },
+  { id: 'erkek', grup: 'cinsiyet', tek: 'cinsiyet', tur: 'RR', oran: 1.3333, cip: 'taban %7,1', ad: 'Erkek',
+    bilgi: 'Meta-analizleri derleyen bir çalışmada çocuk ve ergenlerde yaygınlık erkeklerde %10, kızlarda %5 bulunmuştur: iki kat fark [ayano]. Bu sayfa aynı iki katlık oranı %5,3’lük tabana uygular: erkeklerde yaklaşık %7,1, kızlarda yaklaşık %3,5 (sayfanın hesabı).',
+    ders: 'Erkek olmak tek başına sayıyı az oynatır: 100 erkek çocuğun yaklaşık 93’ünde DEHB yoktur. İsveç kütüğünde tanı almış olanlarda erkek-kız oranı 3,7’dir, yani klinikte fark toplumdakinden daha büyük görünür (Chen ve ark., 2017).' },
+  { id: 'gencanne', grup: 'ebeveyn', tur: 'OR', oran: 1.49, ad: 'Annenin doğumda çok genç olması',
+    bilgi: 'En düşük anne yaşı grubunda düzeltilmiş olasılık oranı 1,49’dur (%95 GA 1,19-1,87). En düşük risk 31-35 yaş aralığındadır. Yazarlar ilişkinin nedensel olup olmadığını göstermek için daha nitelikli çalışmalar gerektiğini yazar [min].',
+    ders: 'Genç ebeveynlik pek çok başka koşulla birlikte gelir. Bu ilişki nedensellik göstermez.' },
+  { id: 'gencbaba', grup: 'ebeveyn', tur: 'OR', oran: 1.75, ad: 'Babanın doğumda çok genç olması',
+    bilgi: 'En düşük baba yaşı grubunda düzeltilmiş olasılık oranı 1,75’tir (%95 GA 1,31-2,36). En yüksek yaş grubunda anlamlı bir ilişki bulunmamıştır [min].',
+    ders: 'Babanın yaşı gebeliği doğrudan etkileyemez. Bu bulgu, ilişkinin ailesel etkenlerle açıklanabileceğini düşündürür. (Açıklama: yazarın yorumu.)' },
+  { id: 'diyabet', grup: 'gebelik', tur: 'HR', oran: 1.36, ad: 'Annenin gebelik öncesi diyabeti',
+    bilgi: 'Tehlike oranı 1,36’dır (%95 GA 1,19-1,55). Bu sonuç yalnızca iki çalışmaya dayanır ve yazarlar grupların karşılaştırılabilirliğini yanlılık kaynağı olarak belirtir [yama].',
+    ders: 'İki çalışmaya dayanan bir oran kesin sayılmamalıdır.' },
+  { id: 'antidep', grup: 'gebelik', tur: 'RR', oran: 1.35, ikinci: { oran: 1.0, etiket: 'Karıştırıcıları hesaba kat (oran 1,0 olur)' }, ad: 'Gebelikte antidepresan kullanımı',
+    bilgi: '37 çalışmada gebelikte antidepresan kullanımı DEHB ile ilişkili bulunmuştur: göreli risk 1,35 (%95 GA 1,24-1,47). Ama ilişki, annenin ruhsal hastalığı ve ailesel ya da genetik etkenler hesaba katılınca zayıflar ya da anlamını yitirir. Gebeliği etkileyemeyecek olan baba kullanımında da benzer bir ilişki vardır (1,46). Yazarlar kanıt kesinliğini düşük ya da çok düşük bulur ve orta-ağır depresyonu olan gebelerde antidepresan tedavisinin sürdürülmesi gerektiğini yazar [chan].',
+    ders: 'İlacı değil, ilacı gerektiren durumu ve aileyi ölçüyor olabiliriz. Bu sayfa ilaç kararı için kullanılamaz: karar hekimle verilir.' },
+  { id: 'sezaryen', grup: 'dogum', tur: 'OR', oran: 1.17, ad: 'Sezaryenle doğum',
+    bilgi: '61 çalışma ve 20 607 935 doğumda sezaryenle doğan çocuklarda olasılık oranı 1,17’dir (%95 GA 1,07-1,26). Acil ve planlı sezaryen için kestirimler benzerdir [zhang].',
+    ders: 'Küçük bir ilişki. Sezaryeni gerektiren nedenler de bu ilişkiyi açıklıyor olabilir. (Açıklama: yazarın yorumu.)' },
+  { id: 'hafiftbi', grup: 'cocukluk', tek: 'tbi', tur: 'OR', oran: 1.07, ad: 'Hafif kafa travması',
+    bilgi: 'Hafif travmatik beyin hasarından bir yıldan uzun süre sonra olasılık oranı 1,07’dir ve anlamlı değildir (%95 güvenilir aralık 0,35-2,48). Beyin sarsıntısı ve orta düzey hasar için de anlamlı artış bulunmamıştır [asar].',
+    ders: 'Her düğme sayıyı oynatmaz. Bu etken için anlamlı bir ilişki gösterilmemiştir.' },
+  { id: 'agirtbi', grup: 'cocukluk', tek: 'tbi', tur: 'OR', oran: 6.25, ad: 'Ağır kafa travması',
+    bilgi: 'Ağır travmatik beyin hasarından bir yıldan uzun süre sonra, yaralanmamış çocuklara göre olasılık oranı 6,25’tir (%95 güvenilir aralık 2,06-15,06). Aralık çok geniştir. Aynı çalışma travma öncesi DEHB oranını da yüksek bulmuştur (%16,0, genel çocuk nüfusunda %10,8) [asar].',
+    ders: 'Yön iki taraflı olabilir: DEHB’li çocuklar travmaya daha sık uğruyor da olabilir.' },
   { id: 'sinif', grup: 'okul', tur: 'RR', oran: 1.38, ad: 'Sınıfın en küçüklerinden olmak',
     soru: 'Okula başlama tarihine göre sınıfının en küçükleri arasında olan 1000 çocuktan kaçı DEHB tanısı alır?',
     bilgi: 'Sınıfın en küçükleri DEHB tanısını daha sık alır: göreli risk 1,38. Etki öğretmen değerlendirmelerinde görülür, ebeveyn değerlendirmelerinde görülmez. Yazarlar bu farkın etkiye katkıda bulunabileceğini belirtir [fri].',
@@ -186,9 +219,11 @@ const ETKEN = [
 ];
 
 const GRUP = [
+  { id: 'cinsiyet', ad: 'Cinsiyet', not: 'birini seçin' },
   { id: 'aile', ad: 'Aile öyküsü', not: 'birini seçin' },
-  { id: 'dogum', ad: 'Doğum', not: 'birini seçin' },
+  { id: 'ebeveyn', ad: 'Anne baba' },
   { id: 'gebelik', ad: 'Gebelik' },
+  { id: 'dogum', ad: 'Doğum' },
   { id: 'cocukluk', ad: 'Çocukluk' },
   { id: 'okul', ad: 'Okul' }
 ];

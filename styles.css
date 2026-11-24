@@ -106,6 +106,8 @@ h1{font-size:clamp(1.8rem,4.6vw,2.7rem);letter-spacing:-.02em}
 #o-cocuk[data-duzey="c"] .halka{stroke:var(--koken)}
 .cocuk .bas{fill:var(--davranis-z);stroke:var(--yazi);stroke-width:2.5}
 .cocuk .sac{fill:var(--yazi)}
+.cocuk .sac-uzun{fill:var(--yazi);display:none}
+#o-cocuk[data-cins="kiz"] .sac-uzun{display:block}
 .cocuk .goz{fill:var(--yazi)}
 .cocuk .agiz,.cocuk .kol,.cocuk .bacak{fill:none;stroke:var(--yazi);stroke-width:2.5;stroke-linecap:round}
 .cocuk .kol,.cocuk .bacak{stroke-width:7}

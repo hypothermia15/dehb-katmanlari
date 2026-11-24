@@ -32,9 +32,9 @@
     GRUP.forEach(g => {
       const kutu = el('div', 'grup'); const bas = el('h3', null, g.ad); if (g.not) bas.append(el('small', null, ' · ' + g.not)); kutu.append(bas);
       const sira = el('div', 'grup-sira');
-      ETKEN.filter(e => e.grup === g.id).sort((a, b) => esdegerOR(a) - esdegerOR(b)).forEach(e => {
+      ETKEN.filter(e => e.grup === g.id).sort((a, b) => a.oran - b.oran).forEach(e => {
         const b = el('button', 'etken'); b.type = 'button'; b.id = 'e-' + e.id; b.setAttribute('aria-pressed', 'false');
-        b.append(el('span', 'e-ad', e.ad), el('span', 'e-oran', TUR_KISA[e.tur] + ' ' + String(e.oran).replace('.', ',')));
+        b.append(el('span', 'e-ad', e.ad), el('span', 'e-oran', ''));
         b.addEventListener('click', () => degistir(e));
         sira.append(b);
       });
@@ -45,6 +45,7 @@
   function degistir(e) {
     if (secili.has(e.id)) secili.delete(e.id);
     else { if (e.tek) ETKEN.forEach(x => { if (x.tek === e.tek) secili.delete(x.id); }); secili.add(e.id); }
+    if (e.grup === 'cinsiyet') $('o-cocuk').dataset.cins = secili.has('kiz') ? 'kiz' : secili.has('erkek') ? 'erkek' : '';
     son = e; ciz();
   }
 
@@ -64,12 +65,13 @@
   }
 
   function ciz() {
-    const p = toplam(), n = secili.size, yuz = Math.round(p * 100);
+    const ham = toplam(), tavan = ham > 0.95, p = Math.min(ham, 0.95), n = secili.size, yuz = Math.round(p * 100);   // %95 üstü gösterilmez: bu hesap o bölgede anlamını bütünüyle yitirir
     // halka
     const C = 2 * Math.PI * 104, h = $('o-halka'); h.style.strokeDasharray = C; h.style.strokeDashoffset = C * (1 - p);
     $('o-cocuk').dataset.duzey = p < 0.15 ? 'a' : p < 0.4 ? 'b' : 'c';
-    $('o-yuzde').textContent = '%' + tr(p * 100, p < 0.1 ? 1 : 0);
-    $('o-yuzde-alt').textContent = n ? `${n} etkenle, varsayımlı hesap` : 'genel toplum';
+    $('o-yuzde').textContent = (tavan ? '>' : '') + '%' + tr(p * 100, p < 0.1 ? 1 : 0);
+    const cins = secili.has('kiz') ? 'kız çocuklar' : secili.has('erkek') ? 'erkek çocuklar' : null, etkenSay = n - (cins ? 1 : 0);
+    $('o-yuzde-alt').textContent = etkenSay ? `${cins ? cins + ', ' : ''}${etkenSay} etkenle, varsayımlı hesap` : (cins || 'genel toplum');
     // 100 çocuk
     const kap = $('o-yuz'); kap.textContent = '';
     for (let i = 0; i < 100; i++) kap.append(el('span', i < yuz ? 'k dolu' : 'k'));
@@ -77,14 +79,14 @@
     $('o-ozet').textContent = n ? `Bu hesaba göre 100 çocuktan yaklaşık ${yuz} tanesinde DEHB beklenir, ${100 - yuz} tanesinde beklenmez.` : 'Genel toplumda 100 çocuktan yaklaşık 5 tanesinde DEHB vardır.';
     // hesap satırı
     const carpan = ETKEN.filter(e => secili.has(e.id)).map(e => '× ' + tr(esdegerOR(e), 2));
-    $('o-hesap').textContent = n ? `Hesap: taban olasılık oranı ${tr(ODDS0, 3)} ${carpan.join(' ')} = ${tr(odds(p), 3)}` + (n >= 3 ? '. Bu kadar etkeni birlikte taşıyan çocuklar üzerinde yapılmış bir çalışmaya dayanmaz.' : '') : '';
+    $('o-hesap').textContent = n ? `Hesap: taban olasılık oranı ${tr(ODDS0, 3)} ${carpan.join(' ')} = ${tr(odds(ham), 3)}` + (tavan ? '. Sayı %95’te kesildi: hiçbir etken birleşimi DEHB’yi kesinleştirmez.' : '') + (etkenSay >= 3 ? ' Bu kadar etkeni birlikte taşıyan çocuklar üzerinde yapılmış bir çalışmaya dayanmaz.' : '') : '';
     ETKEN.forEach(e => { const b = $('e-' + e.id); if (!b) return; b.setAttribute('aria-pressed', String(secili.has(e.id)));
-      b.querySelector('.e-oran').textContent = TUR_KISA[e.tur] + ' ' + String(etkinOran(e)).replace('.', ',') + (ayarli.has(e.id) ? ' (aile içi)' : ''); });
+      b.querySelector('.e-oran').textContent = e.cip || (TUR_KISA[e.tur] + ' ' + String(etkinOran(e)).replace('.', ',') + (ayarli.has(e.id) ? ' (düzeltilmiş)' : '')); });
     bilgiYaz();
   }
 
   dugmeKur();
-  $('o-sifirla').addEventListener('click', () => { secili.clear(); ayarli.clear(); son = null; ciz(); });
+  $('o-sifirla').addEventListener('click', () => { secili.clear(); ayarli.clear(); son = null; $('o-cocuk').dataset.cins = ''; ciz(); });
 
   function gorunum(oyun) {
     $('g-sema').hidden = oyun; $('g-oyun').hidden = !oyun; $('duzey').hidden = oyun;

@@ -37,7 +37,17 @@ Tek etkenli değerler (1000 çocukta):
 | Aşırı erken doğum ya da aşırı düşük doğum ağırlığı | OR 4,05 | 185 | Franz 2018 |
 | Kuzeninde DEHB | HR 2,24 | 115 | Chen 2017 |
 | Kardeşinde DEHB | HR 8,27 | 363 | Chen 2017 |
-| Yalnızca gezintide: anne bir yarı kardeş (HR 2,86 → 144), egzama (OR 1,31 → 68), preeklampsi (OR 1,28 → 67) | | | Chen 2017, Kim 2020 |
+| Anne bir yarı kardeşinde DEHB | HR 2,86 | 144 | Chen 2017 |
+| Çocuklukta egzama | OR 1,31 | 68 | Kim 2020 |
+| Gebelikte preeklampsi | OR 1,28 | 67 | Kim 2020 |
+| Cinsiyet: kız / erkek | yaygınlık oranı 1:2 | 35 / 71 | Ayano 2023 (erkek %10, kız %5); tabana uygulama bu sayfanın hesabı |
+| Annenin doğumda çok genç olması | aOR 1,49 | 77 | Min 2021 |
+| Babanın doğumda çok genç olması | aOR 1,75 | 89 | Min 2021 |
+| Annenin gebelik öncesi diyabeti | HR 1,36 (iki çalışma) | 71 | Yamamoto 2019 |
+| Gebelikte antidepresan | RR 1,35; karıştırıcılar hesaba katılınca zayıflar ya da anlamsızlaşır | 72; 53 (1,0 alındı) | Chan 2026 |
+| Sezaryenle doğum | OR 1,17 | 61 | Zhang 2019 |
+| Hafif kafa travması | OR 1,07 (anlamlı değil) | 57 | Asarnow 2021 |
+| Ağır kafa travması | OR 6,25 (güvenilir aralık 2,06-15,06) | 259 | Asarnow 2021 |
 
 Oranlar ilgili makalelerin PubMed özetlerinden alındı. "1000'de" sütunu bu sayfanın hesabıdır: OR için p = OR·p0/(1 − p0 + OR·p0), RR için p = RR·p0, HR için p = 1 − (1 − p0)^HR, p0 = 0,053.
 
@@ -48,6 +58,10 @@ Bilinen sınırlar:
 - Etkenler birbirinden bağımsız değildir. Birleştirilmiş sayılar bir aritmetik gösterimidir, ölçülmüş bir olasılık değildir. Sayfa kişi için risk hesaplamaz. (İlk sürümde etkenler birleştirilmiyordu; birleştirme kullanıcı isteğiyle eklendi.)
 - Tek yumurta ikizleri için tehlike oranı (70,45) oyuna alınmadı: bu dönüşümle anlamlı bir olasılık vermez.
 - Gebelikte parasetamol (Kim 2020'de RR 1,25) bilerek alınmadı: tartışmalı bir konu, kardeş karşılaştırmalı çalışmalar okunmadan sayfaya konmamalı.
+- Anne sütü almama (Tseng 2019, düzeltilmiş OR 3,71) bilerek alınmadı: vaka-kontrol karşılaştırmasına dayanır, aile içi tasarımla sınanmış bir kestirim bulunmadan konması annelerde dayanaksız bir suçluluk yaratabilir.
+- Taramada bulunup alınmayan öteki etkenler: gebelikte antibiyotik (Tao 2022, OR 1,14; küçük etki), annede otoimmün hastalık (Ellul 2022; özette hangi oranın DEHB'ye ait olduğu belirsiz), kurşun (bulunan çalışma kesitsel), PFAS (Forns 2020; ilişki yok), ebeveynde DEHB (Uchida 2021; özette oran yok).
+- Birleştirilmiş sonuç %95'te kesilir. Bütün etkenler seçildiğinde çarpım %100'e yaklaşır; bu, yöntemin o bölgede anlamını yitirdiğini gösterir.
+- Cinsiyet ayrı bir etken olarak değil taban değişikliği olarak uygulanır (kız %3,5, erkek %7,1; nüfusun yarı yarıya olduğu varsayımıyla %5,3'ten türetildi).
 
 ## Kaynaklar ve doğrulama
 
@@ -56,7 +70,7 @@ Dört katmanlı sınıflama Buitelaar ve Newcorn’un derlemesindeki çerçeveyi
 - Buitelaar ve Newcorn 2026: tam metin okundu.
 - Faraone 2024, Faraone ve Larsson 2019, Hoogman 2017, Hoogman 2019, Koirala 2024: yalnızca PubMed özetleri okundu. Sayfadaki sayılar (örneklem büyüklükleri, etki büyüklükleri, %74 kalıtsallık) bu özetlerden alındı.
 - Willcutt 2005: sayılar PubMed özetinden (83 çalışma, etki büyüklüğü 0,46-0,69).
-- Kim 2020, Chen 2017, Franz 2018, Haan 2022, Frisira 2025: yalnızca PubMed özetleri. Frisira 2025'te tanı için güven aralığı özette 1,36-1,52 olarak geçer; nokta kestirimiyle (1,38) uyumu tam metinden denetlenmedi, sayfada yalnızca 1,38 verildi.
+- Kim 2020, Chen 2017, Franz 2018, Haan 2022, Frisira 2025, Ayano 2023, Zhang 2019, Yamamoto 2019, Chan 2026, Min 2021, Asarnow 2021: yalnızca PubMed özetleri. Frisira 2025'te tanı için güven aralığı özette 1,36-1,52 olarak geçer; nokta kestirimiyle (1,38) uyumu tam metinden denetlenmedi, sayfada yalnızca 1,38 verildi.
 - Künyeler Kasım 2026’da PubMed kayıtlarıyla eşleştirildi.
 
 Kaynağa dayanmayan iki açıklama sayfada açıkça işaretlidir: kalıtsallık kavramının tanımı ve etki büyüklüğü 0,2 için örtüşme hesabı (normal dağılım varsayımıyla örtüşme katsayısı 2Φ(−d/2) ≈ 0,92). Ödül işleme kartındaki “karakter yargısı değildir” cümlesi yazarın yorumudur.
