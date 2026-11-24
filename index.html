@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DEHB’nin Katmanları</title>
+<meta name="description" content="DEHB’yi genlerden davranışa dört katmanda gösteren etkileşimli şema: ne biliniyor, ne sık yanlış okunuyor, kaynaklar.">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="ust">
+  <p class="etiket">Etkileşimli şema</p>
+  <h1>DEHB’nin Katmanları</h1>
+  <p class="giris">Genlerden davranışa dört katman. Bir kutuya dokunun: ne bilindiğini, neyin sık yanlış okunduğunu ve kaynağını görün.</p>
+  <div class="duzey" role="group" aria-label="Anlatım düzeyi">
+    <button type="button" id="d-sade" aria-pressed="true">Sade</button>
+    <button type="button" id="d-ayrinti" aria-pressed="false">Ayrıntılı</button>
+  </div>
+</header>
+
+<main class="govde">
+  <section class="sema" aria-label="Şema">
+    <div class="bant" data-bant="koken">
+      <h2>Kökenler</h2>
+      <div class="kutular" id="b-koken"></div>
+    </div>
+    <div class="ok" aria-hidden="true"><svg viewBox="0 0 24 28"><path d="M12 2v20M5 16l7 8 7-8"/></svg><span>beynin gelişimiyle ilişkilidir</span></div>
+    <div class="bant" data-bant="beyin">
+      <h2>Beyin</h2>
+      <div class="kutular" id="b-beyin"></div>
+    </div>
+    <div class="ok" aria-hidden="true"><svg viewBox="0 0 24 28"><path d="M12 2v20M5 16l7 8 7-8"/></svg><span>dikkatin, davranışın ve duyguların düzenlenmesini etkiler</span></div>
+    <div class="bant" data-bant="davranis">
+      <h2>Davranış ve biliş</h2>
+      <div class="kutular dort" id="b-davranis"></div>
+    </div>
+    <div class="bant zaman" data-bant="zaman">
+      <div class="kutular tek" id="b-zaman"></div>
+    </div>
+    <p class="uyari"><strong>Okurken akılda tutun.</strong> Buradaki farklar grup düzeyinde eğilimlerdir. Gruplar arasında örtüşme büyüktür ve hiçbiri tek başına tanı testi değildir.</p>
+  </section>
+
+  <section class="kart" id="kart" aria-live="polite" tabindex="-1">
+    <p class="bos">Açıklamayı görmek için şemadan bir kutu seçin.</p>
+  </section>
+</main>
+
+<section class="kaynaklar">
+  <h2>Kaynaklar</h2>
+  <ol id="kaynak-liste"></ol>
+</section>
+
+<footer class="alt">
+  <p>Şema ve metin: Doç. Dr. Miraç Barış Usta (2026). Dört katmanlı sınıflama Buitelaar ve Newcorn’un (2026) derlemesindeki çerçeveyi izler. Çizim ve metin özgündür, derlemedeki şekil kullanılmamıştır.</p>
+  <p>Bu sayfa eğitim amaçlıdır. Tanı koymaz, tedavi önermez. Hiçbir veri kaydedilmez ya da gönderilmez.</p>
+</footer>
+<noscript><p class="uyari">Şemanın çalışması için JavaScript gerekir.</p></noscript>
+<script src="icerik.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
