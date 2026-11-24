@@ -12,13 +12,17 @@
   <p class="etiket">Etkileşimli şema</p>
   <h1>DEHB’nin Katmanları</h1>
   <p class="giris">Genlerden davranışa dört katman. Bir kutuya dokunun: ne bilindiğini, neyin sık yanlış okunduğunu ve kaynağını görün.</p>
-  <div class="duzey" role="group" aria-label="Anlatım düzeyi">
+  <nav class="sekme" aria-label="Görünüm">
+    <button type="button" id="s-sema" aria-pressed="true">Şema</button>
+    <button type="button" id="s-oyun" aria-pressed="false">Olasılık oyunu</button>
+  </nav>
+  <div class="duzey" id="duzey" role="group" aria-label="Anlatım düzeyi">
     <button type="button" id="d-sade" aria-pressed="true">Sade</button>
     <button type="button" id="d-ayrinti" aria-pressed="false">Ayrıntılı</button>
   </div>
 </header>
 
-<main class="govde">
+<main class="govde" id="g-sema">
   <section class="sema" aria-label="Şema">
     <div class="bant" data-bant="koken">
       <h2>Kökenler</h2>
@@ -45,6 +49,35 @@
   </section>
 </main>
 
+<main class="oyun" id="g-oyun" hidden>
+  <section class="oyun-ust">
+    <h2>1000 çocuktan kaçı?</h2>
+    <p>Genel toplumda 1000 çocuktan yaklaşık <strong>53</strong>’ünde DEHB vardır. Bir etken eklendiğinde bu sayı kaça çıkar? Tahmin edin, sonra yayımlanmış oranla karşılaştırın.</p>
+    <p class="uyari"><strong>Bu bir kişi için risk hesabı değildir.</strong> Sayılar grup ortalamalarıdır. Oranlar farklı ülkelerden ve farklı tanı tanımlarından gelir, 1000 çocuğa çevirme işlemi bu sayfanın hesabıdır. Etkenler birbirinden bağımsız olmadığı için üst üste çarpılamaz, bu yüzden her seferinde tek etken gösterilir.</p>
+  </section>
+  <section class="oyun-alan">
+    <div class="oyun-sol">
+      <p class="tur" id="o-tur"></p>
+      <h3 id="o-soru"></h3>
+      <div id="o-tahmin">
+        <label for="o-kaydirici">Tahmininiz: <output id="o-deger">53</output> / 1000</label>
+        <input type="range" id="o-kaydirici" min="0" max="1000" step="1" value="53">
+        <button type="button" class="ana" id="o-kilitle">Tahminimi kilitle</button>
+      </div>
+      <div id="o-sonuc" hidden></div>
+      <div id="o-gezinti" hidden>
+        <label for="o-sec">Etken seçin</label>
+        <select id="o-sec"></select>
+      </div>
+    </div>
+    <div class="oyun-sag">
+      <canvas id="o-izgara" width="600" height="250" role="img" aria-label="1000 çocuğu gösteren nokta ızgarası"></canvas>
+      <p class="lejant"><span class="n taban"></span> genel toplumdaki 53 <span class="n ek"></span> etkenle eklenen <span class="n tahmin"></span> tahmininiz</p>
+      <p class="ozet" id="o-ozet" aria-live="polite"></p>
+    </div>
+  </section>
+</main>
+
 <section class="kaynaklar">
   <h2>Kaynaklar</h2>
   <ol id="kaynak-liste"></ol>
@@ -57,5 +90,6 @@
 <noscript><p class="uyari">Şemanın çalışması için JavaScript gerekir.</p></noscript>
 <script src="icerik.js"></script>
 <script src="script.js"></script>
+<script src="oyun.js"></script>
 </body>
 </html>

@@ -9,6 +9,11 @@ const KAYNAK = {
   h17: { kisa: 'Hoogman ve ark., 2017', tam: 'Hoogman M, Bralten J, Hibar DP, ve ark. Subcortical brain volume differences in participants with attention deficit hyperactivity disorder in children and adults: a cross-sectional mega-analysis. Lancet Psychiatry. 2017;4(4):310-319.', doi: '10.1016/S2215-0366(17)30049-4' },
   h19: { kisa: 'Hoogman ve ark., 2019', tam: 'Hoogman M, Muetzel R, Guimaraes JP, ve ark. Brain Imaging of the Cortex in ADHD: A Coordinated Analysis of Large-Scale Clinical and Population-Based Samples. Am J Psychiatry. 2019;176(7):531-542.', doi: '10.1176/appi.ajp.2019.18091033' },
   koi: { kisa: 'Koirala ve ark., 2024', tam: 'Koirala S, Grimsrud G, Mooney MA, ve ark. Neurobiology of attention-deficit hyperactivity disorder: historical challenges and emerging frontiers. Nat Rev Neurosci. 2024;25(12):759-775.', doi: '10.1038/s41583-024-00869-z' },
+  kim: { kisa: 'Kim ve ark., 2020', tam: 'Kim JH, Kim JY, Lee J, ve ark. Environmental risk factors, protective factors, and peripheral biomarkers for ADHD: an umbrella review. Lancet Psychiatry. 2020;7(11):955-970.', doi: '10.1016/S2215-0366(20)30312-6' },
+  chen: { kisa: 'Chen ve ark., 2017', tam: 'Chen Q, Brikell I, Lichtenstein P, ve ark. Familial aggregation of attention-deficit/hyperactivity disorder. J Child Psychol Psychiatry. 2017;58(3):231-239.', doi: '10.1111/jcpp.12616' },
+  franz: { kisa: 'Franz ve ark., 2018', tam: 'Franz AP, Bolat GU, Bolat H, ve ark. Attention-Deficit/Hyperactivity Disorder and Very Preterm/Very Low Birth Weight: A Meta-analysis. Pediatrics. 2018;141(1).', doi: '10.1542/peds.2017-1645' },
+  haan: { kisa: 'Haan ve ark., 2022', tam: 'Haan E, Westmoreland KE, Schellhas L, ve ark. Prenatal smoking, alcohol and caffeine exposure and offspring externalizing disorders: a systematic review and meta-analysis. Addiction. 2022;117(10):2602-2613.', doi: '10.1111/add.15858' },
+  fri: { kisa: 'Frisira ve ark., 2025', tam: 'Frisira E, Holland J, Sayal K. Systematic review and meta-analysis: relative age in attention-deficit/hyperactivity disorder and autism spectrum disorder. Eur Child Adolesc Psychiatry. 2025;34(2):381-401.', doi: '10.1007/s00787-024-02459-x' },
   wil: { kisa: 'Willcutt ve ark., 2005', tam: 'Willcutt EG, Doyle AE, Nigg JT, Faraone SV, Pennington BF. Validity of the executive function theory of attention-deficit/hyperactivity disorder: a meta-analytic review. Biol Psychiatry. 2005;57(11):1336-1346.', doi: '10.1016/j.biopsych.2005.02.006' }
 };
 
@@ -132,3 +137,50 @@ const OGE = {
     kaynak: ['nejm']
   }
 };
+
+/* ── Olasılık oyunu ──
+   TABAN: çocuklarda dünya geneli tahmini yaygınlık (%5,3) [nejm].
+   Her etkende yayımlanmış oran (olasılık oranı OR, göreli risk RR ya da tehlike oranı HR) taban değere uygulanır:
+   OR: p = OR·p0 / (1 − p0 + OR·p0);  RR: p = RR·p0;  HR: p = 1 − (1 − p0)^HR.
+   Bu dönüşüm yazarın hesabıdır; kaynaklardaki çalışmalar farklı ülkelerden ve farklı tanı tanımlarından gelir. */
+const TABAN = 0.053;
+const ETKEN = [
+  { id: 'sinif', tur: 'RR', oran: 1.38, ad: 'Sınıfın en küçüklerinden olmak',
+    soru: 'Okula başlama tarihine göre sınıfının en küçükleri arasında olan 1000 çocuktan kaçı DEHB tanısı alır?',
+    bilgi: 'Sınıfın en küçükleri DEHB tanısını daha sık alır: göreli risk 1,38. Etki öğretmen değerlendirmelerinde görülür, ebeveyn değerlendirmelerinde görülmez. Yazarlar bu farkın etkiye katkıda bulunabileceğini belirtir [fri].',
+    ders: 'Bu etken çocuğun kendisinden çok, kiminle karşılaştırıldığıyla ilgili olabilir.' },
+  { id: 'astim', tur: 'OR', oran: 1.51, ad: 'Çocuklukta astım',
+    soru: 'Astımı olan 1000 çocuktan kaçında DEHB beklenir?',
+    bilgi: 'Çocukluk çağı astımı DEHB ile ilişkilidir: olasılık oranı 1,51 (%95 GA 1,4-1,63). Kanıt düzeyi “güçlü biçimde düşündürücü” olarak sınıflanmıştır [kim].',
+    ders: 'İlişki gösterilmiştir, nedensellik gösterilmemiştir.' },
+  { id: 'sigara', tur: 'OR', oran: 1.6, ad: 'Gebelikte annenin sigara içmesi', ikinci: { oran: 1.0, etiket: 'Göster: aile etkenleri hesaba katılınca' },
+    soru: 'Annesi gebelikte sigara içmiş 1000 çocuktan kaçında DEHB beklenir?',
+    bilgi: 'Gözlemsel çalışmaların ortak sonucu olasılık oranını 1,6 verir (%95 GA 1,45-1,76) [kim]. Ama aynı ailenin çocuklarını karşılaştıran, genetik etkiye duyarlı tasarımlarda ilişki kaybolur: 1 011 546 katılımcılı en büyük analizde olasılık oranı günde 1-9 sigara için 0,90, 10 ve üzeri için 1,04 bulunmuştur. Yazarlar nedensel bir ilişkiyi destekleyen açık bir kanıt olmadığı sonucuna varır [haan].',
+    ders: 'Aynı sayı iki ayrı öykü anlatabilir. Bu bulgu gebelikte sigaranın zararsız olduğu anlamına gelmez: yalnızca DEHB ile ilişkisinin aile etkenleriyle açıklanabildiğini gösterir.' },
+  { id: 'obezite', tur: 'OR', oran: 1.63, ad: 'Annenin gebelik öncesi obezitesi',
+    soru: 'Annesi gebelik öncesinde obez olan 1000 çocuktan kaçında DEHB beklenir?',
+    bilgi: 'Olasılık oranı 1,63 (%95 GA 1,49-1,77). Kanıt düzeyi “ikna edici” olarak sınıflanmıştır. Yazarlar yine de önceki aile çalışmalarına dayanarak bu ilişkinin ailesel ya da genetik etkenlerle karışmış olabileceğini ve nedenselliğin gösterilmesi için yeni çalışmalar gerektiğini yazar [kim].',
+    ders: 'En güçlü kanıt düzeyi bile “neden” demek için yetmez.' },
+  { id: 'cokerken', tur: 'OR', oran: 2.25, ad: 'Çok erken doğum ya da çok düşük doğum ağırlığı',
+    soru: 'Çok erken ya da çok düşük doğum ağırlığıyla doğan 1000 çocuktan kaçında DEHB beklenir?',
+    bilgi: 'Tanıya dayalı 12 çalışmada (toplam 1787 kişi) olasılık oranı 2,25 bulunmuştur (%95 GA 1,56-3,26) [franz].',
+    ders: 'Risk iki katından fazla artsa bile bu çocukların yaklaşık onda dokuzunda DEHB yoktur.' },
+  { id: 'asirierken', tur: 'OR', oran: 4.05, ad: 'Aşırı erken doğum ya da aşırı düşük doğum ağırlığı',
+    soru: 'Aşırı erken ya da aşırı düşük doğum ağırlığıyla doğan 1000 çocuktan kaçında DEHB beklenir?',
+    bilgi: 'Aynı meta-analizde olasılık oranı 4,05’tir (%95 GA 2,38-6,87): durum ağırlaştıkça oran büyür [franz].',
+    ders: 'Durum ağırlaştıkça oran büyüyor. Yine de bu çocukların çoğunda DEHB yoktur.' },
+  { id: 'kuzen', tur: 'HR', oran: 2.24, ad: 'Kuzeninde DEHB olması',
+    soru: 'Kuzeninde DEHB olan 1000 çocuktan kaçında DEHB beklenir?',
+    bilgi: 'İsveç’te 1 656 943 kişilik kütük çalışmasında, DEHB’li bir kişinin kuzenlerinde tehlike oranı 2,24 bulunmuştur [chen].',
+    ders: 'Akrabalık uzaklaştıkça oran küçülür.' },
+  { id: 'kardes', tur: 'HR', oran: 8.27, ad: 'Kardeşinde DEHB olması',
+    soru: 'Kardeşinde DEHB olan 1000 çocuktan kaçında DEHB beklenir?',
+    bilgi: 'Aynı çalışmada öz kardeşler için tehlike oranı 8,27’dir. Anne bir yarı kardeşlerde 2,86, baba bir yarı kardeşlerde 2,31, çift yumurta ikizlerinde 8,44 bulunmuştur [chen].',
+    ders: 'Listedeki en güçlü etken ailedir. Buna karşın kardeşi DEHB’li çocukların çoğunda DEHB yoktur.' },
+  { id: 'yarim', tur: 'HR', oran: 2.86, ad: 'Anne bir yarı kardeşinde DEHB olması', yalnizGezinti: true,
+    bilgi: 'Anne bir yarı kardeşlerde tehlike oranı 2,86, baba bir yarı kardeşlerde 2,31’dir. Fark anlamlıdır. Yazarlar ailesel kümelenmeyi genetik etkenlerin yanında az miktarda ortak çevre etkeninin de sürdürdüğü sonucuna varır [chen].' },
+  { id: 'egzama', tur: 'OR', oran: 1.31, ad: 'Çocuklukta egzama', yalnizGezinti: true,
+    bilgi: 'Olasılık oranı 1,31 (%95 GA 1,20-1,44), kanıt düzeyi “ikna edici” [kim]. Nedensellik gösterilmemiştir.' },
+  { id: 'preeklampsi', tur: 'OR', oran: 1.28, ad: 'Gebelikte preeklampsi', yalnizGezinti: true,
+    bilgi: 'Olasılık oranı 1,28 (%95 GA 1,21-1,35), kanıt düzeyi “ikna edici” [kim]. Nedensellik gösterilmemiştir.' }
+];
