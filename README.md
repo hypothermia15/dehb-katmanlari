@@ -15,7 +15,7 @@ Yazar: Doç. Dr. Miraç Barış Usta (çocuk ve ergen psikiyatrisi), 2026.
 | Davranış ve biliş | Planlama ve düzenleme, dikkat ve bellek, ödül işleme, duygu düzenleme |
 | Zaman | Yaşla ne değişir? |
 
-Dosyalar: `index.html`, `styles.css`, `icerik.js` (metin, etkenler ve kaynaklar), `script.js` (şema), `oyun.js` (olasılık oyunu). Derleme adımı, dış kaynak ya da çerez yoktur.
+Dosyalar: `index.html`, `styles.css`, `icerik.js` (metin, etkenler ve kaynaklar), `script.js` (şema), `oyun.js` (olasılık oyunu). Derleme adımı, dış kaynak ya da çerez yoktur. `index.html` içindeki `?v=` sayısı her yayında bir artırılır; tarayıcının eski betik ve biçem dosyalarını kullanmasını önler.
 
 ## Olasılık oyunu: "Etken ekledikçe ne değişir?"
 
